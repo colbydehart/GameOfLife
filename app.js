@@ -70,6 +70,7 @@ function Game(){
     // }
     // $grid.appendChild(frag);
     //
+    $grid.clearRect(0,0,width*px,height*px);
     $grid.strokeStyle="#111";
     for (i = 0; i < height; i++) {
       for (j = 0; j < width; j++) {
@@ -77,15 +78,17 @@ function Game(){
         case 1:
           $grid.fillStyle = "rgb(41,161,93)";
           $grid.fillRect(j*px,i*px,px,px);
-          $grid.strokeRect(j*px,i*px,px,px);
+          // $grid.strokeRect(j*px,i*px,px,px);
           break;
         case 2:
           $grid.fillStyle = "rgb(40,110,65)";
           $grid.fillRect(j*px,i*px,px,px);
-          $grid.strokeRect(j*px,i*px,px,px);
+          // $grid.strokeRect(j*px,i*px,px,px);
           break;
         case false:
-          $grid.clearRect(j*px, i*px, px, px);
+          $grid.fillStyle = "rgb(10,27,16)";
+          $grid.fillRect(j*px,i*px,px,px);
+          // $grid.clearRect(j*px, i*px, px, px);
           break;
         }
       }
@@ -102,7 +105,7 @@ function Game(){
           newGrid.grid[i][j] = 1;
           if(this.grid[i][j]) newGrid.grid[i][j] = 2;
         }
-        else if(this.grid[i][j]) newGrid.grid[i][j] = false; 
+        else if(this.grid[i][j]||this.grid[i][j]===false) newGrid.grid[i][j] = false; 
       }
     }
     this.grid = newGrid.grid;
