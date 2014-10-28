@@ -85,6 +85,11 @@ function Game(){
           $grid.fillRect(j*px,i*px,px,px);
           // $grid.strokeRect(j*px,i*px,px,px);
           break;
+        case 3:
+          $grid.fillStyle = "rgb(140,170,95)";
+          $grid.fillRect(j*px,i*px,px,px);
+          // $grid.strokeRect(j*px,i*px,px,px);
+          break;
         case false:
           $grid.fillStyle = "rgb(10,27,16)";
           $grid.fillRect(j*px,i*px,px,px);
@@ -100,12 +105,21 @@ function Game(){
     
     for (i = 0; i < height; i++) {
       for (j = 0; j < width; j++) {
-        var curEl = this.grid[i][j];
+        // Figure out if new cell is alive
         if(isAlive(i, j, this.grid)){
           newGrid.grid[i][j] = 1;
           if(this.grid[i][j]) newGrid.grid[i][j] = 2;
         }
-        else if(this.grid[i][j]||this.grid[i][j]===false) newGrid.grid[i][j] = false; 
+        // if a cell has died on this cell, it === false
+        else if(this.grid[i][j]||this.grid[i][j]===false){ 
+          newGrid.grid[i][j] = false; 
+        }
+      }
+    }
+    // highlighting for dying cells
+    for (i = 0; i < height; i++) {
+      for (j = 0; j < width; j++) {
+        if(newGrid.grid[i][j]&&!isAlive(i,j,newGrid.grid)) newGrid.grid[i][j] = 3;
       }
     }
     this.grid = newGrid.grid;
