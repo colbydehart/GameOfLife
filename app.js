@@ -26,14 +26,15 @@ function makeGame(){
     gol.buildGrid($grid);
     //set an interval to apply rules and build grid, stopping
     //when grid is stable
-    var living = true;
+    var living = true, a =1;
     var intervalId = setInterval(function(){
       $grid.innerHTML = '';
       living = gol.calcTick();
       gol.buildGrid($grid);
+      a++;
       if(!living){ 
         clearInterval(intervalId);
-        console.log("done living");
+        console.log("done. lived for " + a + " cycles");
       }
     }, 80);
 
