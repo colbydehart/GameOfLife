@@ -14,7 +14,7 @@ Array.prototype.elAt = function(index){
   return this.slice(index%this.length)[0];
 };
 
-document.addEventListener('DOMContentLoaded', function(){
+$(function(){
   //create the grid, set it's size, and get context
   var $grid = document.createElement('canvas');
   $grid.height = height*px;
